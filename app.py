@@ -1,15 +1,9 @@
 import streamlit as st
-from dotenv import load_dotenv
-import os
 from groq import Groq
-import tempfile
 
-# Load environment variables
-load_dotenv()
-
-# Initialize the Groq client
+# Initialize the Groq client using st.secrets
 try:
-    client = Groq(api_key=os.getenv("TOKEN"))
+    client = Groq(api_key=st.secrets["TOKEN"])
 except Exception as e:
     st.error(f"Error initializing Groq client: {e}")
     st.stop()
